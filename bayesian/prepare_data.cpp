@@ -5,8 +5,6 @@ using namespace std;
 
 int main() {
 
-    // Transform the previous data file into a new one, which contains higher degree parameters.
-
     vector<DataPoint> data = inputData("../rp.data", 693);
 
     vector<DataPoint> benignData, malignantData;
