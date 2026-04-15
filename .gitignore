@@ -1,0 +1,14 @@
+
+/bayesian_testing/data
+/bayesian_testing/output
+/logistic_testing/data
+/logistic_testing/output
+*/split_data
+*/results
+*/prepare_data
+*/gradient_descent
+*/calculate_learn_error
+*/calculate_test_error
+*/prepare_data
+bayesian_testing/prepare_classifiers
+plot.py
