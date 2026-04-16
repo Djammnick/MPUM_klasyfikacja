@@ -12,3 +12,7 @@
 */prepare_data
 bayesian_testing/prepare_classifiers
 plot.py
+/bayesian_dependent_testing/data
+/bayesian_dependent_testing/output
+bayesian_dependent/prepare_classifiers
+bayesian_dependent_testing/prepare_classifiers

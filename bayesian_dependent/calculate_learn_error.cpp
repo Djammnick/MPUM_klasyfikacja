@@ -5,36 +5,32 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-
-    int size = atoi(argv[1]);
-    int seed = atoi(argv[2]);
-
     int testSize;
-    ifstream fin; fin.open("data/test_size_" + to_string(size) + "_" + to_string(seed) +".data");
+    ifstream fin; fin.open("data/learn_size.data");
     fin >> testSize;
     fin.close();
 
     ofstream fout;
 
-    vector<DataPoint> data = inputData("data/test_" + to_string(size) + "_" + to_string(seed) +".data", testSize);
+    vector<DataPoint> data = inputData("data/learn.data", testSize, 10);
 
     array<double, 2> sizes;
-    vector<vector<vector<double>>> bayesCounter(2, vector<vector<double>>(9, vector<double>(10, 1.0)));
-    fin.open("output/bayes_" + to_string(size) + "_" + to_string(seed) +".data");
+    vector<vector<vector<double>>> bayesCounter(2, vector<vector<double>>(10, vector<double>(10, 1.0)));
+    fin.open("output/bayes.data");
     for(int d = 0; d < 2; d++) {
         fin >> sizes[d];
-        for(int j = 0; j < 9; j++) {
+        for(int j = 0; j < 10; j++) {
             for(int c = 0; c < 10; c++) {
                 fin >> bayesCounter[d][j][c];
             }
         }
     }
     fin.close();
-    sizes[0] -= 9; sizes[1] -= 9;
+    sizes[0] -= 10; sizes[1] -= 10;
 
     for(int d = 0; d < 2; d++) {
         cout << sizes[d] << '\n';
-        for(int j = 0; j < 9; j++) {
+        for(int j = 0; j < 10; j++) {
             for(int c = 0; c < 10; c++) {
                 cout << "P(x_" << j << " = " << c << " | y = " << d << ") = " << bayesCounter[d][j][c] << '\n';
             }
@@ -42,7 +38,7 @@ int main(int argc, char* argv[]) {
     }
 
     double acc = calculateError(data, bayesCounter, sizes, 9);
-    fout.open("output/test_errors_" + to_string(size) + "_" + to_string(seed) +".data");
+    fout.open("output/learn_errors.data");
     fout << acc;
     fout.close();
 

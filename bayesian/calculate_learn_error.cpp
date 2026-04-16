@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    double acc = calculateError(data, bayesCounter, sizes);
+    double acc = calculateError(data, bayesCounter, sizes, 9);
     fout.open("output/learn_errors.data");
     fout << acc;
     fout.close();
